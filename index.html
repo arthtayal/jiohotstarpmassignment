@@ -55,41 +55,74 @@
                         <div class="scroll-btn right-btn" id="scroll-right-btn"><i class="fas fa-chevron-right"></i></div>
                     </div>
                 </div>
-                
-                <nav class="bottom-nav">
-                    <div class="nav-item active"><i class="fas fa-home"></i><span>Home</span></div>
-                    <div class="nav-item"><i class="fas fa-search"></i><span>Search</span></div>
-                    <div class="nav-item"><i class="fas fa-bolt"></i><span>Sports</span></div>
-                    <div class="nav-item"><i class="fas fa-film"></i><span>Movies</span></div>
-                </nav>
             </div>
 
             <!-- Screen: Search -->
             <div id="screen-search" class="screen">
                 <header class="app-header">
-                    <h2>Search</h2>
+                    <div class="logo">JioHotstar</div>
+                    <div class="profile-icon"><i class="fas fa-search"></i></div>
                 </header>
-                <div class="scrollable-content padding-20">
-                    <input type="text" class="search-input" placeholder="Movies, shows and more">
-                    <div class="section-title mt-20">Popular Searches</div>
-                    <div class="search-tag">IPL 2026</div>
-                    <div class="search-tag">CSK Highlights</div>
-                    <div class="search-tag">Anupama</div>
+                <div class="scrollable-content">
+                    <div class="padding-20">
+                        <input type="text" class="search-input" id="search-input" placeholder="Movies, shows and more">
+                    </div>
+                    
+                    <div id="search-suggestions">
+                        <div class="section-title">Popular Sports</div>
+                        <div class="horizontal-scroll">
+                            <div class="sports-card-sm" onclick="navToSport('Cricket')">Cricket</div>
+                            <div class="sports-card-sm" onclick="navToSport('Football')">Football</div>
+                            <div class="sports-card-sm" onclick="navToSport('Tennis')">Tennis</div>
+                        </div>
+
+                        <div class="section-title mt-20">Trending Movies</div>
+                        <div class="horizontal-scroll">
+                            <div class="thumbnail" style="background-image: url('Stree_2.jpg'); background-size: cover;"></div>
+                            <div class="thumbnail" style="background-image: url('Dhurandhar-_The_Revenge_poster.jpg'); background-size: cover;"></div>
+                            <div class="thumbnail" style="background-image: url('Unfreedom.png'); background-size: cover;"></div>
+                        </div>
+                    </div>
+
+                    <div id="search-results" class="hidden padding-20">
+                        <div class="section-title">Results</div>
+                        <div class="result-item">Stree 2</div>
+                        <div class="result-item">Dhurandhar - The Revenge</div>
+                        <div class="result-item">Unfreedom</div>
+                    </div>
                 </div>
-                <!-- Reusing bottom nav (simplified via JS later if needed, but easiest to copy or move out. Actually let's move bottom nav outside screens) -->
             </div>
 
             <!-- Screen: Sports -->
             <div id="screen-sports" class="screen">
                 <header class="app-header">
-                    <h2>Sports</h2>
+                    <div class="logo">JioHotstar</div>
+                    <div class="profile-icon"><i class="fas fa-bolt"></i></div>
                 </header>
-                <div class="scrollable-content padding-20">
-                    <div class="sports-grid">
-                        <div class="sports-card">Cricket</div>
-                        <div class="sports-card">Football</div>
-                        <div class="sports-card">Tennis</div>
-                        <div class="sports-card">Kabaddi</div>
+                <div class="scrollable-content">
+                    <div class="hero-carousel">
+                        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1000');">
+                            <div class="live-badge">LIVE</div>
+                            <div class="match-info">
+                                <h2>Euro Cup 2026</h2>
+                                <p>Spain vs Italy • Final</p>
+                            </div>
+                            <div class="play-btn-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">All Sports</div>
+                    <div class="horizontal-scroll">
+                        <div class="sports-card-sm" onclick="navToSport('Cricket')">Cricket</div>
+                        <div class="sports-card-sm" onclick="navToSport('Football')">Football</div>
+                        <div class="sports-card-sm" onclick="navToSport('Tennis')">Tennis</div>
+                        <div class="sports-card-sm" onclick="navToSport('Kabaddi')">Kabaddi</div>
+                    </div>
+
+                    <div class="section-title mt-20">Top Highlights</div>
+                    <div class="horizontal-scroll">
+                        <div class="thumbnail" style="background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1000');"></div>
+                        <div class="thumbnail" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000');"></div>
                     </div>
                 </div>
             </div>
@@ -97,13 +130,50 @@
             <!-- Screen: Movies -->
             <div id="screen-movies" class="screen">
                 <header class="app-header">
-                    <h2>Movies</h2>
+                    <div class="logo">JioHotstar</div>
+                    <div class="profile-icon"><i class="fas fa-film"></i></div>
                 </header>
-                <div class="scrollable-content padding-20">
+                <div class="scrollable-content">
+                    <div class="hero-carousel">
+                        <div class="carousel-slide" style="background-image: url('Stree_2.jpg'); background-size: cover; background-position: top;">
+                            <div class="match-info">
+                                <h2>Stree 2</h2>
+                                <p>Horror • Comedy • 2024</p>
+                            </div>
+                            <div class="play-btn-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+
                     <div class="section-title">New Releases</div>
                     <div class="horizontal-scroll">
-                        <div class="thumbnail"></div>
-                        <div class="thumbnail"></div>
+                        <div class="thumbnail" style="background-image: url('Dhurandhar-_The_Revenge_poster.jpg'); background-size: cover;"></div>
+                        <div class="thumbnail" style="background-image: url('Unfreedom.png'); background-size: cover;"></div>
+                        <div class="thumbnail" style="background-image: url('Stree_2.jpg'); background-size: cover;"></div>
+                    </div>
+
+                    <div class="section-title mt-20">Blockbuster Dramas</div>
+                    <div class="horizontal-scroll">
+                        <div class="thumbnail" style="background-image: url('Unfreedom.png'); background-size: cover;"></div>
+                        <div class="thumbnail" style="background-image: url('Dhurandhar-_The_Revenge_poster.jpg'); background-size: cover;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen: Sport Detail -->
+            <div id="screen-sport-detail" class="screen">
+                <div class="back-btn" onclick="navTo('screen-sports')"><i class="fas fa-arrow-left"></i></div>
+                <header class="app-header" style="padding-top: 0;">
+                    <h2 id="sport-detail-title">Cricket</h2>
+                </header>
+                <div class="scrollable-content padding-20">
+                    <div class="section-title">Upcoming Matches</div>
+                    <div class="match-list-item">
+                        <div class="teams">CSK vs MI</div>
+                        <div class="time-tag">TOMORROW, 7:30 PM</div>
+                    </div>
+                    <div class="match-list-item">
+                        <div class="teams">RCB vs KKR</div>
+                        <div class="time-tag">APR 20, 7:30 PM</div>
                     </div>
                 </div>
             </div>
@@ -124,15 +194,37 @@
                 </div>
                 
                 <div class="match-tabs">
-                    <div class="tab active">Info</div>
-                    <div class="tab">Live Blog</div>
-                    <div class="tab">Scorecard</div>
+                    <div class="tab active" data-tab="info">Info</div>
+                    <div class="tab" data-tab="live-blog">Live Blog</div>
+                    <div class="tab" data-tab="scorecard">Scorecard</div>
                 </div>
                 
                 <div class="match-details-content">
-                    <div class="info-card">
-                        <p><i class="fas fa-map-marker-alt"></i> Wankhede Stadium, Mumbai</p>
-                        <p><i class="fas fa-info-circle"></i> CSK won the toss and chose to bat</p>
+                    <div id="tab-info" class="tab-content active">
+                        <div class="info-card">
+                            <p><i class="fas fa-map-marker-alt"></i> Wankhede Stadium, Mumbai</p>
+                            <p><i class="fas fa-info-circle"></i> CSK won the toss and chose to bat</p>
+                            <p><i class="fas fa-user-tie"></i> Umpires: Anil Chaudhary, Nitin Menon</p>
+                        </div>
+                    </div>
+
+                    <div id="tab-live-blog" class="tab-content hidden">
+                        <div class="blog-entry">
+                            <span class="overs text-pink">15.2 Overs</span>
+                            <p><strong>SIX!</strong> What a shot by Dhoni! Short and pulled away beautifully into the deep square leg stands.</p>
+                        </div>
+                        <div class="blog-entry">
+                            <span class="overs text-pink">15.1 Overs</span>
+                            <p>Bumrah to Dhoni, no run. Yorker length on middle, dug out back to the bowler.</p>
+                        </div>
+                    </div>
+
+                    <div id="tab-scorecard" class="tab-content hidden">
+                        <table class="score-table">
+                            <tr><th>Batter</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th></tr>
+                            <tr><td>MS Dhoni*</td><td>24</td><td>12</td><td>1</td><td>2</td><td>200.0</td></tr>
+                            <tr><td>R Jadeja</td><td>18</td><td>10</td><td>2</td><td>0</td><td>180.0</td></tr>
+                        </table>
                     </div>
                 </div>
 
@@ -264,6 +356,13 @@
                     <button class="primary-btn" onclick="navTo('screen-home')">Back to Home</button>
                 </div>
             </div>
+
+            <nav class="bottom-nav">
+                <div class="nav-item active"><i class="fas fa-home"></i><span>Home</span></div>
+                <div class="nav-item"><i class="fas fa-search"></i><span>Search</span></div>
+                <div class="nav-item"><i class="fas fa-bolt"></i><span>Sports</span></div>
+                <div class="nav-item"><i class="fas fa-film"></i><span>Movies</span></div>
+            </nav>
 
             <!-- Toast Notification -->
             <div id="toast" class="toast">Data-Smart Mode auto-enabled.</div>

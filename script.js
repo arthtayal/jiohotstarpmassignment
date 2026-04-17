@@ -25,6 +25,15 @@ function navTo(screenId) {
     screens.forEach(s => s.classList.remove('active'));
     document.getElementById(screenId).classList.add('active');
     
+    // Toggle bottom nav visibility
+    const bottomNav = document.querySelector('.bottom-nav');
+    const hideNavScreens = ['screen-player', 'screen-match', 'screen-summary', 'screen-sport-detail'];
+    if (hideNavScreens.includes(screenId)) {
+        bottomNav.classList.add('hidden');
+    } else {
+        bottomNav.classList.remove('hidden');
+    }
+
     // Stop video if leaving player
     if (screenId !== 'screen-player') {
         if (matchVideo && !matchVideo.paused) matchVideo.pause();
@@ -109,10 +118,46 @@ document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
     });
 });
 
+// Search Logic
+const searchInput = document.getElementById('search-input');
+const searchSuggestions = document.getElementById('search-suggestions');
+const searchResults = document.getElementById('search-results');
+
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        if (e.target.value.length > 0) {
+            searchSuggestions.classList.add('hidden');
+            searchResults.classList.remove('hidden');
+        } else {
+            searchSuggestions.classList.remove('hidden');
+            searchResults.classList.add('hidden');
+        }
+    });
+}
+
+function navToSport(name) {
+    document.getElementById('sport-detail-title').innerText = name;
+    navTo('screen-sport-detail');
+}
+
 document.querySelectorAll('.match-tabs .tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
+        // Update tab buttons
         document.querySelectorAll('.match-tabs .tab').forEach(t => t.classList.remove('active'));
         e.currentTarget.classList.add('active');
+
+        // Switch content interfaces
+        const targetTab = e.currentTarget.dataset.tab;
+        document.querySelectorAll('.match-details-content .tab-content').forEach(content => {
+            content.classList.add('hidden');
+            content.classList.remove('active');
+        });
+        
+        const activeContent = document.getElementById('tab-' + targetTab);
+        if (activeContent) {
+            activeContent.classList.remove('hidden');
+            activeContent.classList.add('active');
+        }
     });
 });
 
