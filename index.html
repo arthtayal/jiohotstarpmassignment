@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JioHotstar - Data-Smart Mode Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app-frame">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <div class="icons">
+                <i class="fas fa-signal"></i>
+                <span class="data-indicator">4G</span>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div id="app-content">
+            
+            <!-- Screen 1: Home Screen -->
+            <div id="screen-home" class="screen active">
+                <header class="app-header">
+                    <div class="logo">JioHotstar</div>
+                    <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+                </header>
+                
+                <div class="scrollable-content">
+                    <div class="hero-carousel">
+                        <div class="carousel-slide" id="live-match-banner">
+                            <div class="live-badge">LIVE</div>
+                            <div class="match-info">
+                                <h2>CSK vs MI</h2>
+                                <p>TATA IPL 2026 - Match 1</p>
+                            </div>
+                            <div class="play-btn-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">Trending Now</div>
+                    <div class="trending-container">
+                        <div class="scroll-btn left-btn hidden" id="scroll-left-btn"><i class="fas fa-chevron-left"></i></div>
+                        <div class="horizontal-scroll" id="trending-scroll">
+                            <div class="thumbnail" style="background-image: url('Stree_2.jpg'); background-size: cover; background-position: center;"></div>
+                            <div class="thumbnail" style="background-image: url('Dhurandhar-_The_Revenge_poster.jpg'); background-size: cover; background-position: center;"></div>
+                            <div class="thumbnail" style="background-image: url('Unfreedom.png'); background-size: cover; background-position: center;"></div>
+                        </div>
+                        <div class="scroll-btn right-btn" id="scroll-right-btn"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
+                
+                <nav class="bottom-nav">
+                    <div class="nav-item active"><i class="fas fa-home"></i><span>Home</span></div>
+                    <div class="nav-item"><i class="fas fa-search"></i><span>Search</span></div>
+                    <div class="nav-item"><i class="fas fa-bolt"></i><span>Sports</span></div>
+                    <div class="nav-item"><i class="fas fa-film"></i><span>Movies</span></div>
+                </nav>
+            </div>
+
+            <!-- Screen: Search -->
+            <div id="screen-search" class="screen">
+                <header class="app-header">
+                    <h2>Search</h2>
+                </header>
+                <div class="scrollable-content padding-20">
+                    <input type="text" class="search-input" placeholder="Movies, shows and more">
+                    <div class="section-title mt-20">Popular Searches</div>
+                    <div class="search-tag">IPL 2026</div>
+                    <div class="search-tag">CSK Highlights</div>
+                    <div class="search-tag">Anupama</div>
+                </div>
+                <!-- Reusing bottom nav (simplified via JS later if needed, but easiest to copy or move out. Actually let's move bottom nav outside screens) -->
+            </div>
+
+            <!-- Screen: Sports -->
+            <div id="screen-sports" class="screen">
+                <header class="app-header">
+                    <h2>Sports</h2>
+                </header>
+                <div class="scrollable-content padding-20">
+                    <div class="sports-grid">
+                        <div class="sports-card">Cricket</div>
+                        <div class="sports-card">Football</div>
+                        <div class="sports-card">Tennis</div>
+                        <div class="sports-card">Kabaddi</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen: Movies -->
+            <div id="screen-movies" class="screen">
+                <header class="app-header">
+                    <h2>Movies</h2>
+                </header>
+                <div class="scrollable-content padding-20">
+                    <div class="section-title">New Releases</div>
+                    <div class="horizontal-scroll">
+                        <div class="thumbnail"></div>
+                        <div class="thumbnail"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: Match Details -->
+            <div id="screen-match" class="screen">
+                <div class="back-btn" onclick="navTo('screen-home')"><i class="fas fa-arrow-left"></i></div>
+                <div class="match-hero">
+                    <div class="team-logos">
+                        <div class="team-circle csk">CSK</div>
+                        <div class="vs">VS</div>
+                        <div class="team-circle mi">MI</div>
+                    </div>
+                    <div class="score-summary">
+                        <h3>CSK 142/3 (15.2)</h3>
+                        <p>CRR: 9.34</p>
+                    </div>
+                </div>
+                
+                <div class="match-tabs">
+                    <div class="tab active">Info</div>
+                    <div class="tab">Live Blog</div>
+                    <div class="tab">Scorecard</div>
+                </div>
+                
+                <div class="match-details-content">
+                    <div class="info-card">
+                        <p><i class="fas fa-map-marker-alt"></i> Wankhede Stadium, Mumbai</p>
+                        <p><i class="fas fa-info-circle"></i> CSK won the toss and chose to bat</p>
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="primary-btn pulse" id="btn-watch-live">
+                        <i class="fas fa-play"></i> Watch Live
+                    </button>
+                </div>
+            </div>
+
+            <!-- Screen 3, 4, 5: Player Screen -->
+            <div id="screen-player" class="screen bg-black">
+                <div class="video-container">
+                    <!-- Real match video -->
+                <video id="match-video" playsinline loop>
+                    <source src="Recording 2026-04-17 215939.mp4" type="video/mp4">
+                </video>
+
+                <div class="player-header">
+                        <i class="fas fa-arrow-left" onclick="showExitSummary()"></i>
+                    <span class="live-tag">LIVE</span>
+                    <i class="fas fa-volume-mute" id="mute-btn" title="Unmute"></i>
+                </div>
+
+                    <!-- Center Play/Pause (invisible mostly) -->
+                    <div class="player-center-controls"></div>
+
+                    <!-- Bottom Controls -->
+                    <div class="player-bottom-controls">
+                        <div class="progress-bar-container" id="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="controls-row">
+                            <div class="left-controls">
+                                <i class="fas fa-pause" id="play-pause-btn"></i>
+                                <span class="time-elapsed" id="time-display">0:00</span>
+                            </div>
+                            <div class="right-controls">
+                                <!-- Data Saver Pill -->
+                                <button id="data-saver-pill" class="data-saver-pill hidden">
+                                    <i class="fas fa-leaf"></i> Data-Smart
+                                </button>
+                                <i class="fas fa-cog" id="settings-icon"></i>
+                                <i class="fas fa-expand"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Data Meter -->
+                        <div id="data-meter" class="data-meter hidden">
+                            <div class="meter-fill" style="width: 30%"></div>
+                            <div class="meter-text">
+                                <span class="used">42 MB used</span>
+                                <span class="remaining">~110 MB to end</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 3: Data-Smart Nudge Overlay -->
+                <div id="nudge-overlay" class="overlay hidden">
+                    <div class="bottom-sheet slide-up">
+                        <div class="sheet-icon gradient-bg">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Watching on mobile data?</h3>
+                        <p>Turn on Data-Smart Mode — use 80% less data while keeping the stream smooth.</p>
+                        <div class="sheet-actions">
+                            <button class="primary-btn gradient-btn" id="btn-turn-on">Turn On</button>
+                            <button class="secondary-btn" id="btn-skip">Skip</button>
+                        </div>
+                        <div class="auto-switch-toggle">
+                            <label class="switch">
+                                <input type="checkbox" id="auto-switch-cb">
+                                <span class="slider round"></span>
+                            </label>
+                            <span>Auto-enable on mobile data</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 5: Quality Settings Overlay -->
+                <div id="quality-overlay" class="overlay hidden">
+                    <div class="bottom-sheet slide-up">
+                        <div class="sheet-header">
+                            <h3>Video Quality</h3>
+                            <i class="fas fa-times" id="close-quality"></i>
+                        </div>
+                        <div class="quality-options">
+                            <div class="q-option" data-quality="auto">
+                                <div>Auto</div>
+                            </div>
+                            <div class="q-option" data-quality="1080p">
+                                <div>1080p <span class="tag">HD</span></div>
+                            </div>
+                            <div class="q-option" data-quality="720p">
+                                <div>720p <span class="tag">HD</span></div>
+                            </div>
+                            <div class="q-option active gradient-border" data-quality="data-smart">
+                                <div>
+                                    <i class="fas fa-leaf text-pink"></i> Data-Smart Mode
+                                    <p class="sub-text">Saves ~80% data</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 7: Exit Summary -->
+            <div id="screen-summary" class="screen">
+                <div class="summary-content">
+                    <div class="icon-circle gradient-bg">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2>Match Ended</h2>
+                    <div class="stats-card">
+                        <div class="stat-row">
+                            <span>Data Used</span>
+                            <span class="highlight">148 MB</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Data Saved</span>
+                            <span class="highlight text-green">~450 MB</span>
+                        </div>
+                        <p class="stat-note">Thanks to Data-Smart Mode</p>
+                    </div>
+                    <button class="primary-btn" onclick="navTo('screen-home')">Back to Home</button>
+                </div>
+            </div>
+
+            <!-- Toast Notification -->
+            <div id="toast" class="toast">Data-Smart Mode auto-enabled.</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
