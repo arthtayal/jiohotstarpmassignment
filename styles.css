@@ -21,18 +21,21 @@
 }
 
 body {
+    margin: 0;
+    padding: 0;
     background-color: #000;
     color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
 }
 
 #app-frame {
     width: 100%;
     max-width: 414px; /* Mobile width for desktop */
-    height: 100vh;
+    height: 100dvh;
     max-height: 896px;
     background-color: var(--bg-main);
     position: relative;
